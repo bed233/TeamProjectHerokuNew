@@ -86,7 +86,7 @@ DATABASES = {
     }
 }
 
-CSRF_TRUSTED_ORIGINS = ['https://oaxaca-restaurants.herokuapp.com/', 'https://0.0.0.0']
+CSRF_TRUSTED_ORIGINS = ['https://oaxaca-restaurants.herokuapp.com/', 'https://0.0.0.0', 'https://oaxaca-restaurants.herokuapp.com']
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
