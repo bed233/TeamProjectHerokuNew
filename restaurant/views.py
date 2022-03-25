@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.views import View
-from django.contrib.auth.mixins import UserPassesTestMixin, LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.utils.timezone import datetime
 
 from customer.models import OrderModel
@@ -8,7 +8,7 @@ from restaurant.models import DashboardModel
 
 
 # Dashboard View send and receives data from the Database to and from the rendered HTML.
-class Dashboard(LoginRequiredMixin, UserPassesTestMixin, View):
+class Dashboard(LoginRequiredMixin, View):
     def get(self, request, *args, **kwargs):
         today = datetime.today()
         orders = OrderModel.objects.filter(created_on__year=today.year, created_on__month=today.month,
@@ -54,7 +54,7 @@ class Dashboard(LoginRequiredMixin, UserPassesTestMixin, View):
         return redirect('dashboard')
 
 # Shows staff indepth description of selected order.
-class OrderDetails(LoginRequiredMixin, UserPassesTestMixin, View):
+class OrderDetails(LoginRequiredMixin, View):
     def get(self, request, pk, *args, **kwargs):
         order = OrderModel.objects.get(pk=pk)
 
@@ -87,6 +87,3 @@ class OrderDetails(LoginRequiredMixin, UserPassesTestMixin, View):
         }
 
         return render(request, 'restaurant/order-details.html', context)
-
-    def test_func(self):
-        return self.request.user.groups.filter(name='Staff').exists()
