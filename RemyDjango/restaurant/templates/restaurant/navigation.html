@@ -1,0 +1,19 @@
+<nav class="navbar navbar-dark navbar-expand-lg bg-dark py-lg-4 rounded" id="mainNav">
+    {% load static %}
+    <div class="container-fluid"><a class="navbar-brand" href="#">
+        <img src="{% static 'customer/Logo.png' %}" width="190" height="76" alt="">
+    </a>
+        <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navcol-1"><span
+                class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"
+                                                                      style="color: rgba(255,255,255,0.55);font-family: Raleway, sans-serif;border-color: rgba(255,255,255,0.55);"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navcol-1">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link active" href="{% url 'dashboard' %}">Dashboard</a></li>
+                <li class="nav-item"><a class="nav-link active" href="{% url 'account_logout' %}">Sign Out</a></li>
+            </ul>
+            </li>
+            </ul>
+        </div>
+    </div>
+</nav>

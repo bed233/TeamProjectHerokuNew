@@ -1,0 +1,120 @@
+{% extends 'customer/base.html' %}
+{% load static %}
+
+{% block content %}
+    {#    <div class="container mb-5">#}
+    {#        <div class="row justify-content-center mt-5">#}
+    {#            <div class="col-md-8 col-sm-12 offset-md-1 p-4 text-center">#}
+    {#                <h1>Ratatouille</h1>#}
+    {#            </div>#}
+    {#        </div>#}
+    {#        <div class="row justify-content-center mt-1">#}
+    {#            <div class="card col-md-5 col-sm-12 offset-md-1 p-4 text-center">#}
+    {#                <h2>Place an Order!</h2>#}
+    {#                <a href="{% url 'Order' %}" class="btn btn-outline-primary">Order</a>#}
+    {#            </div>#}
+    {#        </div>#}
+    {#    </div>#}
+
+    <body style="background-image: url({% static 'customer/background.jpg' %}); height: 1056px;">
+    <div class="carousel slide carousel-fade" data-mdb-ride="carousel" id="carousel-1">
+        <style>
+            .carousel-inner {
+                width: 100%;
+                height: 500px;
+            }
+
+            .carousel-item {
+                background-position: center;
+                background-repeat: no-repeat;
+            }
+        </style>
+
+        <div class="carousel-inner">
+            <div class="carousel-item active text-center">
+                <img class="w-100 d-block" src="{% static 'customer/Pasta.jpg' %}"
+                     alt="Dish" style="height: 50%;">
+            </div>
+            <div class="carousel-item text-center">
+                <img class="w-100 d-block" src="{% static 'customer/Inside.jpg' %}"
+                     alt="Restaurant interior" style="height: 50%;">
+            </div>
+            <div class="carousel-item text-center">
+                <img class="w-100 d-block" src="{% static 'customer/Outside.jpg' %}"
+                     alt="Restaurant exterior" style="height: 50%;">
+            </div>
+        </div>
+
+        <button class="carousel-control-prev" type="button" data-mdb-target="#carousel-1"
+                data-mdb-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-mdb-target="#carousel-1"
+                data-mdb-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+
+        <div class="carousel-indicators">
+            <button
+                    type="button"
+                    data-mdb-target="#carousel-1"
+                    data-mdb-slide-to="0"
+                    class="active"
+                    aria-current="true"
+                    aria-label="Slide 1"
+            ></button>
+            <button
+                    type="button"
+                    data-mdb-target="#carousel-1"
+                    data-mdb-slide-to="1"
+                    aria-label="Slide 2"
+            ></button>
+            <button
+                    type="button"
+                    data-mdb-target="#carousel-1"
+                    data-mdb-slide-to="2"
+                    aria-label="Slide 3"
+            ></button>
+        </div>
+        </ol>
+    </div>
+    <section class="highlight-blue text-center"
+             style="background: url({% static 'customer/Wine.jpg' %}) center / cover;">
+        <div class="container">
+            <div class="intro">
+                <br>
+                <br>
+                <br>
+                <h2 class="text-center" style="color: #2B1B17;">Check Out Our Menu</h2>
+                <p class="text-center"></p>
+            </div>
+            <div class="buttons text-center"><a class="btn btn-primary" role="button" href="{% url 'Menu' %}"
+                                                style="color: #2B1B17; font-size: 12px">Our
+                Menu</a></div>
+        </div>
+    </section>
+    <section class="highlight-blue text-center"
+             style="background: url({% static 'customer/Menu.jpg' %}) center /cover no-repeat;">
+        <div class="container">
+            <div class="intro">
+                <br>
+                <br>
+                <h2 class="text-center" style="color: #FFAE42;">About Us</h2>
+            </div>
+            <div class="buttons text-center"><a class="btn btn-primary" role="button" href="{% url 'About' %}"
+                                                style="color: #FFAE42; font-size: 12px">About
+                Us</a></div>
+        </div>
+    </section>
+    <style>
+        .highlight-blue {
+            height: 250px;
+            width: 100%;
+
+        }
+    </style>
+{% endblock content %}
+
+

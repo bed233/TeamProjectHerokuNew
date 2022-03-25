@@ -1,0 +1,265 @@
+{% extends 'customer/base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="container mb-5">
+        <div class="row justify-content-center mt-1">
+            <div class="col-md-12 col-sm-12 p-4">
+                <h1>What's on our menu</h1>
+            </div>
+        </div>
+
+        <div class="row justify-content-center mt-5">
+            <div class="col-md-8 col-sm-12 text-center">
+                <form method="GET" action="{% url 'menu-search' %}">
+                    <div class="md-form mt-0 active-cyan-2">
+                        <input class="form-control" name="q" type="text" placeholder="Search Our Menu"
+                               aria-label="Search" value="{{ request.GET.q }}">
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="menu">
+            <form method="POST">
+                {% csrf_token %}
+
+                {% if nachos %}
+                    <div class="menu-group">
+                        <h2 class="menu-group-heading">
+                            Nachos
+                        </h2>
+                        {% for nachos in nachos %}
+                            <div class="menu-item">
+                                <div class="form-group form-check">
+                                    <input type="checkbox" name="items[]" class="form-check-input"
+                                           value="{{ nachos.pk }}">
+                                </div>
+                                <img class="menu-item-image" src="{{ nachos.image.url }}">
+                                <div class="menu-item-text">
+                                    <h3 class="menu-item-heading">
+                                        <span class="menu-item-name"> {{ nachos.name }}</span>
+                                        <span class="menu-item-price">£ {{ nachos.price }}</span>
+                                    </h3>
+                                    <p class="menu-item-allergens">
+                                        Allergens: {{ nachos.get_allergy_values }}
+                                    </p>
+                                    <p class="menu-item-calories">
+                                        Calories: {{ nachos.calories }}
+                                    </p>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+
+                {% if tacos %}
+                    <div class="menu-group">
+                        <h2 class="menu-group-heading">
+                            Tacos
+                        </h2>
+                        {% for tacos in tacos %}
+                            <div class="menu-item">
+                                <div class="form-group form-check">
+                                    <input type="checkbox" name="items[]" class="form-check-input"
+                                           value="{{ tacos.pk }}">
+                                </div>
+                                <img class="menu-item-image" src="{{ tacos.image.url }}">
+                                <div class="menu-item-text">
+                                    <h3 class="menu-item-heading">
+                                        <span class="menu-item-name"> {{ tacos.name }}</span>
+                                        <span class="menu-item-price">£ {{ tacos.price }}</span>
+                                    </h3>
+                                    <p class="menu-item-allergens">
+                                        Allergens: {{ tacos.get_allergy_values }}
+                                    </p>
+                                    <p class="menu-item-calories">
+                                        Calories: {{ tacos.calories }}
+                                    </p>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+
+                {% if burrito %}
+                    <div class="menu-group">
+                        <h2 class="menu-group-heading">
+                            Burritos
+                        </h2>
+                        {% for burrito in burrito %}
+                            <div class="menu-item">
+                                <div class="form-group form-check">
+                                    <input type="checkbox" name="items[]" class="form-check-input"
+                                           value="{{ burrito.pk }}">
+                                </div>
+                                <img class="menu-item-image" src="{{ burrito.image.url }}">
+                                <div class="menu-item-text">
+                                    <h3 class="menu-item-heading">
+                                        <span class="menu-item-name"> {{ burrito.name }}</span>
+                                        <span class="menu-item-price">£ {{ burrito.price }}</span>
+                                    </h3>
+                                    <p class="menu-item-allergens">
+                                        Allergens: {{ burrito.get_allergy_values }}
+                                    </p>
+                                    <p class="menu-item-calories">
+                                        Calories: {{ burrito.calories }}
+                                    </p>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+
+                {% if desserts %}
+                    <div class="menu-group">
+                        <h2 class="menu-group-heading">
+                            Desserts
+                        </h2>
+                        {% for dessert in desserts %}
+                            <div class="menu-item">
+                                <div class="form-group form-check">
+                                    <input type="checkbox" name="items[]" class="form-check-input"
+                                           value="{{ dessert.pk }}">
+                                </div>
+                                <img class="menu-item-image" src="{{ dessert.image.url }}">
+                                <div class="menu-item-text">
+                                    <h3 class="menu-item-heading">
+                                        <span class="menu-item-name"> {{ dessert.name }}</span>
+                                        <span class="menu-item-price">£ {{ dessert.price }}</span>
+                                    </h3>
+                                    <p class="menu-item-allergens">
+                                        Allergens: {{ dessert.get_allergy_values }}
+                                    </p>
+                                    <p class="menu-item-calories">
+                                        Calories: {{ dessert.calories }}
+                                    </p>
+                                </div>
+                            </div>
+                            <hr/>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+
+                <div class="form-group pt-3">
+                    <label for="name">Full Name</label>
+                    <input required class="form-control" type="text" placeholder="Your Name" name="name"/>
+                </div>
+
+                <div class="form-group pt-3">
+                    <label for="name">Email Address</label>
+                    <input required class="form-control" type="text" placeholder="example@company.com"
+                           name="email"/>
+                </div>
+
+                <div class="form-group pt-3">
+                    <select class="form-select" name="table_number" aria-label="table_number">
+                        <option value=1>Table 1</option>
+                        <option value=2>Table 2</option>
+                        <option value=3>Table 3</option>
+                        <option value=4>Table 4</option>
+                        <option value=5>Table 5</option>
+                        <option value=6>Table 6</option>
+                        <option value=7>Table 7</option>
+                    </select>
+                </div>
+
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-primary" data-mdb-toggle="modal"
+                        data-mdb-target="#submitModal">
+                    Submit Order!
+                </button>
+                <!-- <button class="btn btn-dark mt-5">Place Order!</button> -->
+
+                <!-- Modal -->
+                <div class="modal fade" id="submitModal" tabindex="-1" aria-labelledby="submitModalLabel"
+                     aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="submitModalLabel">Submit Your Order!</h5>
+                                <button type="button" class="btn-close" data-mdb-dismiss="modal"
+                                        aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-light" data-mdb-dismiss="modal">Go Back
+                                </button>
+                                <button type="submit" class="btn btn-dark">Place Order!</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    </div>
+
+    <style>
+        body {
+            background-image: url({% static 'customer/background.png' %});
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1.5em;
+        }
+
+        .menu {
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+        }
+
+        .menu-group-heading {
+            margin: 0;
+            padding-bottom: 1em;
+            border-bottom: 2px solid #da6a53;
+        }
+
+        .menu-group {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5em;
+            padding: 1.5em 0;
+        }
+
+        .menu-item {
+            display: flex;
+        }
+
+        .menu-item-image {
+            width: 80px;
+            height: 80px;
+            flex-shrink: 0;
+            object-fit: cover;
+            margin-right: 1.5em;
+        }
+
+        .menu-item-text {
+            flex-grow: 1;
+        }
+
+        .menu-item-heading {
+            display: flex;
+            justify-content: space-between;
+            margin: 0;
+        }
+
+        .menu-item-name {
+            margin-right: 1.5em;
+        }
+
+        .menu-item-allergens {
+            line-height: 1.6;
+        }
+
+        .menu-item-calories {
+            line-height: 1.6;
+        }
+    </style>
+{% endblock content %}

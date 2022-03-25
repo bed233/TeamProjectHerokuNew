@@ -1,0 +1,111 @@
+{% extends 'restaurant/base.html' %}
+
+{% block content %}
+    <div class="container">
+        <div class="row justify-content-center mt-3">
+            <div class="card col-md-5 mr-3">
+                <h4 class="text-center pt-2">Today's Total Revenue</h4>
+                <h1 class="text-center" style="color: green;">£{{ total_revenue }}</h1>
+            </div>
+
+            <div class="card col-md-5 mr-3">
+                <h4 class="text-center pt-2">Today's Total Orders</h4>
+                <h1 class="text-center" style="color: #ad0003;">{{ total_orders }}</h1>
+            </div>
+        </div>
+        &nbsp;
+        <div>
+            <form method="POST">
+                {% csrf_token %}
+                <select class="form-select" name="table_number" aria-label="select example">
+                    <option value=0>All Tables</option>
+                    <option value=1>Table 1</option>
+                    <option value=2>Table 2</option>
+                    <option value=3>Table 3</option>
+                    <option value=4>Table 4</option>
+                    <option value=5>Table 5</option>
+                    <option value=6>Table 6</option>
+                    <option value=7>Table 7</option>
+
+                </select>
+                <button type="submit" id="submit" class="btn btn-primary btn-sm mt-3">
+                    Submit
+                </button>
+            </form>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-md-12 mt-5">
+                <table class="table table-hover table-striped">
+                    <thead>
+                    <tr>
+                        <th scope="col">Order ID</th>
+                        <th scope="col">Time Placed</th>
+                        <th scope="col">Table No.</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Confirmed?</th>
+                        <th scope="col">Delivered?</th>
+                        <th scope="col">Paid?</th>
+                        <th scope="col">Help?</th>
+                        <th scope="col">Details</th>
+
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    {% for order in orders %}
+                        <tr>
+                            <th scope="row">{{ order.pk }}</th>
+                            <td>{{ order.created_on }}</td>
+                            <td>{{ order.table_number }}</td>
+                            <td>£{{ order.price }}</td>
+                            <td>{{ order.name }}</td>
+                            <td>{{ order.email }}</td>
+                            <td>
+                                {% if order.order_confirmed %}
+                                    <i style="color: green;" class="fas fa-check"></i>
+                                {% else %}
+                                    <i style="color: red;" class="fas fa-times"></i>
+                                {% endif %}
+
+                            </td>
+
+                            <td>
+                                {% if order.is_delivered %}
+                                    <i style="color: green;" class="fas fa-check"></i>
+                                {% else %}
+                                    {% if order.ready_to_deliver %}
+                                        <i style="color: goldenrod;" class="fa fa-exclamation-triangle"> Order is ready
+                                            to be Delivered!</i>
+                                    {% else %}
+                                        <i style="color: red;" class="fas fa-times"></i>
+                                    {% endif %}
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if order.is_paid %}
+                                    <i style="color: green;" class="fas fa-check"></i>
+                                {% else %}
+                                    <i style="color: red;" class="fas fa-times"></i>
+                                {% endif %}
+
+                            </td>
+                            <td>
+                                {% if order.need_help %}
+                                    <i style="color: goldenrod;" class="fa fa-exclamation-triangle"></i>
+                                {% else %}
+                                    <i style="color: red;" class="fas fa-times"></i>
+                                {% endif %}
+
+                            </td>
+                            <td><a href="{% url 'order-details' order.pk %}"><i class="far fa-edit"></i></a></td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
