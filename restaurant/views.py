@@ -53,10 +53,6 @@ class Dashboard(LoginRequiredMixin, UserPassesTestMixin, View):
 
         return redirect('dashboard')
 
-    def test_func(self):
-        return self.request.user.groups.filter(name='Staff').exists()
-
-
 # Shows staff indepth description of selected order.
 class OrderDetails(LoginRequiredMixin, UserPassesTestMixin, View):
     def get(self, request, pk, *args, **kwargs):
