@@ -21,7 +21,7 @@ SECRET_KEY = 'django-insecure-0i6$4mr*ird)gbk)e+q)mcepx5bk0wrl=btl9751vg+ko9r0&@
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['.herokuapp.com', '127.0.0.1']
+ALLOWED_HOSTS = ['.herokuapp.com', '127.0.0.1', '0.0.0.0']
 
 # Application definition
 AUTHENTICATION_BACKENDS = [
@@ -86,7 +86,7 @@ DATABASES = {
     }
 }
 
-CSRF_TRUSTED_ORIGINS = ['https://oaxaca-restaurants.herokuapp.com']
+CSRF_TRUSTED_ORIGINS = ['https://oaxaca-restaurants.herokuapp.com/', 'https://0.0.0.0']
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
